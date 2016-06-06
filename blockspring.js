@@ -39,8 +39,25 @@ blockspring.define(function(request, response) {
     },
     { cache: true, expiry: 7200},
     function(res) {
+      var entries = res.params.data.map(function(currentValue, index, array) {
+        return {
+          "projectName": currentValue["Project Name"],
+          "timestamp": currentValue["Timestamp"],
+          "description": currentValue["Description"],
+          "repoUrl": currentValue["Code Repository URL"],
+          "demoUrl": currentValue["Demo or Website URL"],
+          "imageUrl": currentValue["Image URL"],
+          "relatedSdgs": currentValue["Related SDGs"],
+          "projectChampion": currentValue["Project Champion Individual(s) or Organization(s)"],
+          "entrarName": currentValue["Your Name"],
+          "entrarEmail": currentValue["Your Email or URL"],
+          "comments": currentValue["Additional Comments"],
+          "tags": currentValue["Descriptive tags (comma separated, please)"]
+        }
+      });
+
       response.addOutput("query", query);
-      response.addOutput("entries", res.params.data);
+      response.addOutput("entries", entries);
       response.end();
   });
 });

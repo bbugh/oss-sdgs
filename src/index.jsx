@@ -124,12 +124,12 @@ var ProjectList = React.createClass({
   render: function() {
     var projectNodes = this.props.projects.map(function(project, key) {
       var context = {
-        title: project["Project Name"],
+        title: project["projectName"],
         description: project["Description"],
-        img_source: project["Image URL"],
-        tags: project["Related SDGs"],
-        demo_url: project["Demo or Website URL"],
-        repo_url: project["Code Repository URL"],
+        img_source: project["imageUrl"],
+        tags: project["relatedSdgs"],
+        demo_url: project["demoUrl"],
+        repo_url: project["repoUrl"],
       };
       return (
         <ProjectRow key={key} project={context} />
